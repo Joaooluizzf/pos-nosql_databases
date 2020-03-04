@@ -4,7 +4,7 @@ user = "user:"
 score = "score:"
 cartela = "cartela:"
 
-redis_con = redis.Redis(host='localhost', port=6380, db=0, password="Jasinski")
+redis_con = redis.Redis(host='nosql_redis', port=6380, db=0, password="Jasinski")
 redis_con.flushall()
 redis_con.sadd("stones", *range(1, 100))
 
@@ -20,8 +20,6 @@ for i in range(50):
     pipe.sadd(cartelai, *redis_con.srandmember("stones", 15))
     pipe.set(scorei, 0)
 pipe.execute()
-
-
 
 #game start
 turn = 0

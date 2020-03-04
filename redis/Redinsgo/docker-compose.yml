@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.4'
 
 services:
 
@@ -9,4 +9,6 @@ services:
     command: redis-server --port 6380 --requirepass Jasinski
     ports:
       - 6380:6380
-    
+  redinsgo:
+    container_name: redinsgo
+    image: redinsgo
