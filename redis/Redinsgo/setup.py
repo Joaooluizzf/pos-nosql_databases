@@ -22,12 +22,14 @@ for i in range(50):
 pipe.execute()
 
 #game start
+print("Iniciando Bingo!")
 turn = 0
 while stone := redis_con.spop("stones", 1):
+
     turn = turn + 1
     bingo = False;
     intStone = int(stone[0])
-    print("turn: " + str(turn) + ", stone: " + str(intStone))
+    print("turno: " + str(turn) + ", pedra tirada: " + str(intStone))
 
     for i in range(50):
         if redis_con.sismember(cartela + str(i), intStone):
@@ -36,7 +38,7 @@ while stone := redis_con.spop("stones", 1):
 
     for i in range(50):
         if int(redis_con.get(score + str(i))) == 15:
-            print("Bingo: " + user + str(i) + "!")
+            print("Bingo! Vencedor: " + user + str(i))
             bingo = True
 
     if bingo:
